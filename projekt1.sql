@@ -2,7 +2,7 @@
 create database firma;
 
 --Dodaj schemat o nazwie ksiegowosc.
-create schema ksiegowosc;
+--create schema ksiegowosc;
 
 -- tworzenie tabeli pracownicy
 create table pracownicy (
@@ -121,16 +121,16 @@ from pracownicy;
 -- zadanie 5b
 select w.id_pracownika
 from wynagrodzenie w
-inner join pensja pe
+join pensja pe
 on pe.id_pensji = w.id_pensji
 where pe.kwota > 4500
 
 -- zadanie 5c
 select w.id_pracownika
 from wynagrodzenie w
-inner join premia pr
+join premia pr
 on pr.id_premii=w.id_premii
-inner join pensja pe
+join pensja pe
 on pe.id_pensji=w.id_pensji
 where (pr.kwota=0.00 and pe.kwota > 5200)
 
@@ -157,26 +157,26 @@ select p.imie, p.nazwisko,
 		else 'niepe�ny etat'
 	end status_etatu
 from pracownicy p
-inner join godziny g
+join godziny g
 on g.id_pracownika=p.id_pracownika
 
 -- zadanie 5g
 select p.imie, p.nazwisko
 from pracownicy p
-inner join wynagrodzenie w
+join wynagrodzenie w
 on p.id_pracownika=w.id_pracownika
-inner join pensja pe
+join pensja pe
 on pe.id_pensji=w.id_pensji
 where pe.kwota between 4000 and 7500
 
 -- zadanie 5h
 select p.imie, p.nazwisko
 from pracownicy p
-inner join godziny g
+join godziny g
 on g.id_pracownika=p.id_pracownika
-inner join wynagrodzenie w
+join wynagrodzenie w
 on p.id_pracownika=w.id_pracownika
-inner join premia pr
+join premia pr
 on pr.id_premii=w.id_premii
 where (g.liczba_godzin > 160) and (pr.kwota = 0.00)
 
@@ -185,18 +185,18 @@ select p.imie, p.nazwisko
 from pracownicy p
 inner join wynagrodzenie w
 on p.id_pracownika=w.id_pracownika
-inner join pensja pe
+join pensja pe
 on pe.id_pensji=w.id_pensji
 order by pe.kwota
 
 -- zadanie 5j
 select p.imie, p.nazwisko
 from pracownicy p
-inner join wynagrodzenie w
+join wynagrodzenie w
 on p.id_pracownika=w.id_pracownika
-inner join pensja pe
+join pensja pe
 on pe.id_pensji=w.id_pensji
-inner join premia pr
+join premia pr
 on pr.id_premii=w.id_premii
 order by pe.kwota DESC, pr.kwota DESC
 
@@ -222,9 +222,9 @@ group by (stanowisko)
 --zadanie 5p
 select stanowisko, count(pr.id_premii) as liczba_premii
 from pensja pe
-inner join wynagrodzenie w
+join wynagrodzenie w
 on pe.id_pensji=w.id_pensji
-inner join premia pr
+join premia pr
 on pr.id_premii=w.id_premii
 where (pr.kwota > 0.00)
 group by (pe.stanowisko)
@@ -251,3 +251,4 @@ from wynagrodzenie w
 where w.id_pracownika=p.id_pracownika)
 
 select * from pracownicy
+
