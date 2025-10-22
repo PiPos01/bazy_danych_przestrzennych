@@ -1,18 +1,18 @@
 CREATE TABLE buildings (
 id INT PRIMARY KEY NOT NULL,
-geometry GEOMETRY(polygon),
+geometry GEOMETRY,
 name VARCHAR(20)
 );
 
 CREATE TABLE roads (
 id INT PRIMARY KEY NOT NULL,
-geometry GEOMETRY(linestring),
+geometry GEOMETRY,
 name VARCHAR(5)
 );
 
 CREATE TABLE points (
 id INT PRIMARY KEY NOT NULL,
-geometry GEOMETRY(point),
+geometry GEOMETRY,
 name VARCHAR(1)
 );
 
@@ -77,4 +77,5 @@ ST_Area(ST_Union(b.geometry, ST_GeometryFromText('POLYGON((4 7, 6 7, 6 8, 4 8, 4
 ST_Area(ST_Difference(ST_Union(b.geometry, ST_GeometryFromText('POLYGON((4 7, 6 7, 6 8, 4 8, 4 7))')), 
 ST_INTERSECTION(b.geometry, ST_GeometryFromText('POLYGON((4 7, 6 7, 6 8, 4 8, 4 7))')))) as pole_bez_czesci_wspolnej
 FROM buildings b
+
 WHERE b.name='BuildingC'
